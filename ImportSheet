@@ -1,0 +1,19 @@
+function copyClearPaste() {
+
+var master = SpreadsheetApp.openById("enter_master_spreadsheet_uuid_here");
+
+var remote = SpreadsheetApp.openById("enter_remote_spreadsheet_uuid_here");
+
+var dbSheet = master.getSheetByName("database");
+
+var pasteSheet = remote.getSheetBtName("source1");
+
+var values = dbSheet.getRange(1,1,dbSheet.getMaxRows(),14).getValues();
+
+pasteSheet.getRange(1,1,pasteSheet.getMaxRows(),14).clearContent();
+
+if (values.length > pasteSheet.getMaxRows()) {pasteSheet.insertRowsBefore(1,values.length - pasteSheet.getMaxRows())}
+
+pasteSheet.getRange(1,1,values.length,14).setValues(values);
+
+}
